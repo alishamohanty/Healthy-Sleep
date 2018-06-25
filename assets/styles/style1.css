@@ -1,0 +1,13 @@
+.about
+{
+  margin-top: 15rem; 
+}
+.style-about
+{
+  display:block;
+  justify-content: center;
+}
+
+.hor-bar{
+  background-color:rgb(233, 186, 31);
+}
