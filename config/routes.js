@@ -27,7 +27,8 @@ module.exports.routes = {
   '/': {
     view: 'pages/homepage'
   },
-
+  'post /sleep':    'SleepController.create',
+  'get /sleep/:id?':  'SleepController.find' 
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *
@@ -38,7 +39,7 @@ module.exports.routes = {
   * not match any of those, it is matched against static assets.             *
   *                                                                          *
   ***************************************************************************/
-
+  
 
   //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
   //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗
