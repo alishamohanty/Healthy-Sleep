@@ -1,5 +1,6 @@
 # healthy-sleep
 
+healthy-sleep is and a simple application which deals with the usage of routes thus creating,updating,searching and deleting recors to the information related sleep.
 a [Sails v1](https://sailsjs.com) application
 
 
