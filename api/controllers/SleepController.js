@@ -12,16 +12,17 @@ module.exports = {
       
       var params=req.allParams();
       console.log('params',params);
-      Sleep.create(params,function( err, sleep )
+      Sleep.create( params ,function( err, result )
       {
           if(err)
           {
               return next(err);
               console.log("Error occured in the create method");
           }
-          res.status(201);
-          res.json(sleep);
-          console.log('Sleep create ',sleep);
+          console.log('Sleep create ',result);
+        res.status(201);
+        return res.json(params);
+          
           
       });
     },
@@ -42,7 +43,7 @@ module.exports = {
             {
                 next(err);
             }
-            res.json(sleep);
+            return res.json(sleep);
             console.log('Inside findone method',sleep);
           });      
       }
@@ -74,7 +75,7 @@ module.exports = {
              {
                  return next(err);
              }
-             res.json(sleep);
+            return res.json(sleep);
 
            });
         }
@@ -85,6 +86,61 @@ module.exports = {
                    return true;
                }  
              }
+       },    
+   
+    update: function(req,res,next) 
+    {
+        var criteria = {};
+        criteria = _.merge({}, req.allParams(),req.body);
+
+        var id= req.param('id');
+        if(!id)
+        {
+            console.log('No id provided');
+            return res.badRequest('No id provided');
+        }
+        Sleep.update(id, criteria, function(err, sleep)
+        {
+        //   if(sleep.length === 0)
+        //   return res.notFound();
+          console.log('criteria',criteria);
+          console.log('sleep',sleep);
+          
+          if(err)
+          return next(err);
+          return res.json(sleep);   
+        });
+    
+    },
+    destroy: function (req,res,next)
+    {
+        var id=req.param('id');
+        if(!id)
+         {
+             return res.badRequest('No id provided');
+         }        
+        Sleep.findOne(id,function (err,result)
+        {
+           if(err)
+           {
+               return res.serverError();
+           } 
+           if(!result)
+           {
+               return res.notFound();
+           }
+           Sleep.destroy(id, function (err)
+           {
+             console.log('Deleted',result);
+             if(err)
+             {
+                 return next(err);
+             }   
+             
+           });
+           return res.json(result);
+
+        });
     }
 
   

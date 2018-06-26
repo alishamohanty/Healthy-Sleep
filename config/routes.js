@@ -27,8 +27,10 @@ module.exports.routes = {
   '/': {
     view: 'pages/homepage'
   },
-  'post /sleep':    'SleepController.create',
-  'get /sleep/:id?':  'SleepController.find' 
+  'post /sleep':        'SleepController.create',
+  'get /sleep/:id?':    'SleepController.find',
+  'put /sleep/:id?':    'SleepConroller.update',
+  'delete /sleep/:id?': 'SleepController.destroy' 
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *
